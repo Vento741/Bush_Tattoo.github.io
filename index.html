@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Добавляем CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' https://i.pinimg.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline';">
+    <title>Dark Ink - Тату Салон</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Подключаем шрифт -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигационное меню -->
+    <nav class="navbar">
+        <div class="logo">BUSH<span class="accent">TATTOO</span></div>
+        <div class="nav-links">
+            <a href="#home">Главная</a>
+            <a href="#about">О мастере</a>
+            <a href="#portfolio">Работы</a>
+            <a href="#process">Процесс</a>
+            <a href="#contact">Контакты</a>
+        </div>
+        <div class="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Главная секция -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="telegram-cta">
+                <span class="telegram-icon">📱</span>
+                <a href="https://t.me/Bush_Tattoo_Bot" target="_blank">
+                    БЫСТРАЯ ЗАПИСЬ ЧЕРЕЗ @Bush_Tattoo_Bot
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+            <h1>BUSH<span class="accent">TATTOO</span></h1>
+            <p id="typing-text" class="typing"></p>
+            <a href="#contact" class="cta-button">ЗАПИСАТЬСЯ</a>
+        </div>
+        <video class="background-video" autoplay muted loop playsinline>
+            <source src="videos/tattoo-background.mp4" type="video/mp4">
+        </video>
+        <div class="tattoo-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about" class="about">
+        <h2>Обо мне</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p class="welcome-text">Привет, я Никита! 🎨</p>
+                <p class="main-text">Добро пожаловать в мир, где каждая татуировка – это история, а твоя кожа – это холст для создания шедевра. Уже 6 лет я превращаю идеи в искусство, которое остается с вами навсегда!</p>
+                
+                <div class="highlight-box">
+                    <p>🎯 Почему выбирают меня:</p>
+                    <ul class="highlight-list">
+                        <li>Создаю уникальные дизайны, а не копирую шаблоны</li>
+                        <li>Работаю на топовом оборудовании премиум-класса</li>
+                        <li>Использую только сертифицированные краски и материалы</li>
+                        <li>Каждый проект для меня – это отдельная история</li>
+                    </ul>
+                </div>
+
+                <!-- Добавляем блок мастера здесь -->
+                <div class="master-profile">
+                    <div class="master-image">
+                        <img src="images/master.jpg" alt="Мастер Никита">
+                        <div class="experience-badge">6+ лет опыта</div>
+                    </div>
+                    <div class="master-info">
+                        <div class="master-header">
+                            <h3>НИКИТА</h3>
+                            <div class="master-title">Профессиональный тату-мастер</div>
+                        </div>
+                        
+                        <div class="master-skills">
+                            <h4>СПЕЦИАЛИЗАЦИЯ</h4>
+                            <div class="skills-grid">
+                                <div class="skill-item">
+                                    <span class="skill-name">Япония</span>
+                                    <div class="skill-bar" data-level="95">
+                                        <div class="skill-progress"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Old School</span>
+                                    <div class="skill-bar" data-level="90">
+                                        <div class="skill-progress"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Реализм</span>
+                                    <div class="skill-bar" data-level="98">
+                                        <div class="skill-progress"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Минимализм</span>
+                                    <div class="skill-bar" data-level="92">
+                                        <div class="skill-progress"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Dotwork</span>
+                                    <div class="skill-bar" data-level="88">
+                                        <div class="skill-progress"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="style-list">
+                    <h3>Мои стили:</h3>
+                    <div class="styles-grid">
+                        <div class="style-card">
+                            <div class="style-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <!-- Реализм: Детализированная роза со стеблем -->
+                                    <!-- Стебель -->
+                                    <path d="M12 21V16M12 16c0 0-2-1-2-3s2-3 2-3M12 16c0 0 2-1 2-3s-2-3-2-3" />
+                                    <!-- Шипы -->
+                                    <path d="M10 17l-1.5 1M14 17l1.5 1M10 14l-1.5 1M14 14l1.5 1" />
+                                    <!-- Листья -->
+                                    <path d="M9.5 18c-1 0-2-1-2-2s1-2 2-1.5M14.5 18c1 0 2-1 2-2s-1-2-2-1.5" />
+                                    <!-- Основной цветок -->
+                                    <path d="M12 3c-0.5 3-2 4.5-3.5 5.5C7 9.2 5.5 9.5 4 9.7c1.5 0.8 2.5 1.8 3 2.8 0.5 1 0.7 2.2 0.5 3.5 1.5-0.5 2.7-0.8 4-0.8 1.3 0 2.5 0.3 4 0.8-0.2-1.3 0-2.5 0.5-3.5 0.5-1 1.5-2 3-2.8-1.5-0.2-3-0.5-4.5-1.2C13 7.5 11.5 6 12 3z"/>
+                                    <!-- Детали лепестков -->
+                                    <path d="M12 6c0.8 1.5 1.5 2.5 2.5 3M12 6c-0.8 1.5-1.5 2.5-2.5 3"/>
+                                    <path d="M12 10c0.8-1 1.5-1.7 2.5-2M12 10c-0.8-1-1.5-1.7-2.5-2"/>
+                                    <!-- Тени и блики на лепестках -->
+                                    <path d="M10.5 8.5c0.5-0.5 1-0.7 1.5-0.7 0.5 0 1 0.2 1.5 0.7" fill="none"/>
+                                    <path d="M11 7.5c0.3-0.3 0.7-0.5 1-0.5 0.3 0 0.7 0.2 1 0.5" fill="none"/>
+                                </svg>
+                            </div>
+                            <h4>Реализм</h4>
+                            <p>Фотографическая точность и внимание к деталям. Твои воспоминания оживут на коже!</p>
+                        </div>
+                        <div class="style-card">
+                            <div class="style-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <!-- Old School: Ласточка в классическом стиле -->
+                                    <path d="M12 5L9 9l3 2 3-2-3-4z"/> <!-- Голова -->
+                                    <path d="M9 9L4 12l5 3 3-2-3-4z"/> <!-- Левое крыло -->
+                                    <path d="M15 9l5 3-5 3-3-2 3-4z"/> <!-- Правое крыло -->
+                                    <path d="M12 11l-3 4 3 4 3-4-3-4z"/> <!-- Хвост -->
+                                    <!-- Декоративные элементы -->
+                                    <path d="M12 7l1 1M12 7l-1 1"/> <!-- Детали головы -->
+                                    <path d="M7 12h2M15 12h2"/> <!-- Линии на крыльях -->
+                                    <path d="M12 15l1 1M12 15l-1 1"/> <!-- Детали хвоста -->
+                                    <!-- Звезды вокруг -->
+                                    <path d="M6 7l1 1-1 1-1-1zM18 7l1 1-1 1-1-1zM12 19l1 1-1 1-1-1z"/>
+                                </svg>
+                            </div>
+                            <h4>Old School</h4>
+                            <p>Классика, проверенная временем. Яркие цвета и четкие линии для смелых духом!</p>
+                        </div>
+                        <div class="style-card">
+                            <div class="style-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <!-- Графика: Геометрические фигуры -->
+                                    <path d="M12 2L2 12l10 10 10-10L12 2zm0 4l6 6-6 6-6-6 6-6z"/> <!-- Внешний ромб -->
+                                    <path d="M12 8l4 4-4 4-4-4 4-4z"/> <!-- Внутренний ромб -->
+                                    <circle cx="12" cy="12" r="2"/> <!-- Центральная точка -->
+                                </svg>
+                            </div>
+                            <h4>Графика</h4>
+                            <p>Геометрия и абстракция. Для тех, кто ценит минимализм и глубокий смысл.</p>
+                        </div>
+                        <div class="style-card">
+                            <div class="style-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <!-- Минимализм: Простые линии -->
+                                    <path d="M4 12h16M12 4v16" stroke-width="2" fill="none" stroke="currentColor"/> <!-- Пересекающиеся линии -->
+                                    <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/> <!-- Круг -->
+                                </svg>
+                            </div>
+                            <h4>Минимализм</h4>
+                            <p>Меньше значит больше. Лаконичные линии расскажут твою историю.</p>
+                        </div>
+                        <div class="style-card">
+                            <div class="style-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <!-- Dotwork: Узор из точек -->
+                                    <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor"/>
+                                    <circle cx="12" cy="12" r="1"/>
+                                    <circle cx="12" cy="8" r="1"/>
+                                    <circle cx="12" cy="16" r="1"/>
+                                    <circle cx="8" cy="12" r="1"/>
+                                    <circle cx="16" cy="12" r="1"/>
+                                    <circle cx="9.5" cy="9.5" r="1"/>
+                                    <circle cx="14.5" cy="9.5" r="1"/>
+                                    <circle cx="14.5" cy="14.5" r="1"/>
+                                    <circle cx="9.5" cy="14.5" r="1"/>
+                                </svg>
+                            </div>
+                            <h4>Dotwork</h4>
+                            <p>Тысячи точек сливаются в единую картину. Идеально для любителей необычного!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-stats">
+                <div class="stat">
+                    <span class="number">6+</span>
+                    <span class="label">Лет в искусстве</span>
+                </div>
+                <div class="stat">
+                    <span class="number">1000+</span>
+                    <span class="label">Счастливых клиентов</span>
+                </div>
+                <div class="stat">
+                    <span class="number">∞</span>
+                    <span class="label">Креативных идей</span>
+                </div>
+            </div>
+
+            <div class="about-quote">
+                <p>"Твоя татуировка – это не просто рисунок, это часть твоей истории, которую мы создадим вместе!"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Портфолио -->
+    <section id="portfolio" class="portfolio">
+        <h2>Мои работы</h2>
+        <div class="portfolio-container">
+            <!-- Добавляем кнопки навигации -->
+            <button class="portfolio-nav prev">❮</button>
+            <button class="portfolio-nav next">❯</button>
+            
+            <div class="portfolio-track">
+                <div class="portfolio-item">
+                    <img src="https://i.pinimg.com/originals/d4/cb/92/d4cb9236fa28b554191c152e211d4672.jpg" alt="Тату работа 1">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://i.pinimg.com/736x/3e/d9/3b/3ed93b16c60f162e8b8a5dd36f8f3284.jpg" alt="Тату работа 2">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://i.pinimg.com/736x/a8/42/16/a842165fab8328cc45797d50bf816511.jpg" alt="Тату работа 3">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://i.pinimg.com/736x/7e/d2/9a/7ed29aaaddc05ef837b66a07aba50f4f.jpg" alt="Тату работа 4">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://i.pinimg.com/736x/80/62/3a/80623a926c45533c47ccc3748f383990.jpg" alt="Тату работа 5">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://i.pinimg.com/originals/a1/d0/5e/a1d05e12a9e0b836796de4a1c3d12228.jpg" alt="Тату работа 6">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://i.pinimg.com/736x/ab/7a/73/ab7a730a77893b412840cc842fc0d474.jpg" alt="Тату работа 7">
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://i.pinimg.com/736x/a8/cb/0f/a8cb0fe922ff113a93c10db455559651.jpg" alt="Тату работа 8">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Обновляем модальное окно -->
+    <div class="modal">
+        <button class="modal-close">×</button>
+        <button class="modal-nav prev">❮</button>
+        <button class="modal-nav next">❯</button>
+        <img class="modal-content" id="modal-img">
+        <div class="modal-counter">1 / 8</div>
+    </div>
+
+    <!-- Процесс работы -->
+    <section id="process" class="process">
+        <h2>КАК Я РАБОТАЮ</h2>
+        <div class="process-container">
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>КОНСУЛЬТАЦИЯ</h3>
+                        <div class="step-details">
+                            <p>• Обсуждение идеи и стиля</p>
+                            <p>• Выбор размера и места</p>
+                            <p>• Предварительный эскиз</p>
+                            <p>• Расчет стоимости</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>ЭСКИЗ</h3>
+                        <div class="step-details">
+                            <p>• Разработка уникального дизайна</p>
+                            <p>• Учет всех пожеланий</p>
+                            <p>• Внесение правок</p>
+                            <p>• Финальное утверждение</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>ПОДГОТОВКА</h3>
+                        <div class="step-details">
+                            <p>• Стерилизация оборудования</p>
+                            <p>• Подготовка рабочего места</p>
+                            <p>• Перенос эскиза</p>
+                            <p>• Подбор цветов и игл</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>НАНЕСЕНИЕ</h3>
+                        <div class="step-details">
+                            <p>• Поэтапное нанесение</p>
+                            <p>• Контроль качества</p>
+                            <p>• Соблюдение гигиены</p>
+                            <p>• Рекомендации по уходу</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="process-info">
+                <div class="info-card">
+                    <div class="info-icon">🛡️</div>
+                    <h4>БЕЗОПАСНОСТЬ</h4>
+                    <ul>
+                        <li>Стерильные инструменты</li>
+                        <li>Одноразовые материалы</li>
+                        <li>Сертифицированные краски</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">💪</div>
+                    <h4>ГАРАНТИИ</h4>
+                    <ul>
+                        <li>Бесплатная коррекция</li>
+                        <li>Качественные материалы</li>
+                        <li>Индивидуальный подход</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="contact">
+        <h2>СВЯЗАТЬСЯ СО МНОЙ</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-header">
+                        <div class="contact-icon">📱</div>
+                        <h3>КОНТАКТЫ</h3>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="icon">📞</span>
+                            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">✉️</span>
+                            <a href="mailto:bush.tattoo@gmail.com">bush.tattoo@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📍</span>
+                            <span>г. Москва, ул. Примерная, 123</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-header">
+                        <div class="contact-icon">⏰</div>
+                        <h3>ВРЕМЯ РАБОТЫ</h3>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="schedule-item">
+                            <span class="day">ВТ-ПТ:</span>
+                            <span class="time">11:00 - 20:00</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="day">СБ:</span>
+                            <span class="time">12:00 - 18:00</span>
+                        </div>
+                        <div class="schedule-item closed">
+                            <span class="day">ВС-ПН:</span>
+                            <span class="time">Выходной</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-header">
+                        <div class="contact-icon">🌐</div>
+                        <h3>СОЦИАЛЬНЫЕ СЕТИ</h3>
+                    </div>
+                    <div class="social-grid">
+                        <a href="#" class="social-link instagram">
+                            <span class="icon">📸</span>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="social-link vkontakte">
+                            <span class="icon">💬</span>
+                            <span>VKontakte</span>
+                        </a>
+                        <a href="#" class="social-link telegram">
+                            <span class="icon">✈️</span>
+                            <span>Telegram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form">
+                <h3>ОСТАВИТЬ ЗАЯВКУ</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" required placeholder="Как к вам обращаться?">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" required placeholder="+7 (___) ___-__-__">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="style">Стиль татуировки</label>
+                        <select id="style" required>
+                            <option value="" disabled selected>Выберите стиль</option>
+                            <option value="realism">Реализм</option>
+                            <option value="oldschool">Old School</option>
+                            <option value="graphic">Графика</option>
+                            <option value="minimal">Минимализм</option>
+                            <option value="dotwork">Dotwork</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="message">Опишите вашу идею</label>
+                        <textarea id="message" required placeholder="Расскажите подробнее о желаемой татуировке..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="checkbox-container">
+                            <input type="checkbox" required>
+                            <span class="checkmark"></span>
+                            Согласен с обработкой персональных данных
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-button">
+                        <span>ОТПРАВИТЬ ЗАЯВКУ</span>
+                        <span class="button-icon">→</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Кнопка "Наверх" -->
+    <button id="scroll-top" class="scroll-top">↑</button>
+
+    <footer>
+        <p>&copy; 2025 BUSH<span class="accent">TATTOO</span>. Все права защищены.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
