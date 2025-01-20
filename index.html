@@ -40,7 +40,7 @@
             </div>
             <h1>BUSH<span class="accent">TATTOO</span></h1>
             <p id="typing-text" class="typing"></p>
-            <a href="#contact" class="cta-button">ЗАПИСАТЬСЯ</a>
+            <a href="#" class="cta-button" id="booking-btn">ЗАПИСАТЬСЯ</a>
         </div>
         <video class="background-video" autoplay muted loop playsinline>
             <source src="videos/tattoo-background.mp4" type="video/mp4">
@@ -52,6 +52,59 @@
             <div class="shape shape-4"></div>
         </div>
     </section>
+
+    <!-- Добавляем модальное окно для формы записи -->
+    <div class="booking-modal">
+        <div class="modal-overlay"></div>
+        <div class="booking-form-container">
+            <div class="modal-close-btn">×</div>
+            <div class="form-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <form class="booking-form">
+                <h2>Запись на консультацию</h2>
+                <div class="form-group">
+                    <input type="text" id="booking-name" required>
+                    <label for="booking-name">Ваше имя</label>
+                    <div class="form-line"></div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="booking-phone" required>
+                    <label for="booking-phone">Ваш телефон</label>
+                    <div class="form-line"></div>
+                </div>
+                <div class="form-group">
+                    <select id="booking-style" required>
+                        <option value="" disabled selected>Выберите стиль</option>
+                        <option value="japan">Япония</option>
+                        <option value="realism">Реализм</option>
+                        <option value="graphic">Графика</option>
+                        <option value="minimal">Минимализм</option>
+                        <option value="dotwork">Dotwork</option>
+                    </select>
+                    <div class="form-line"></div>
+                </div>
+                <div class="form-group">
+                    <textarea id="booking-idea" required></textarea>
+                    <label for="booking-idea">Опишите вашу идею или напишите тему для консультации</label>
+                    <div class="form-line"></div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" required>
+                        <span class="checkmark"></span>
+                        Согласие на обработку персональных данных
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Отправить</span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- О нас -->
     <section id="about" class="about">
@@ -88,6 +141,12 @@
                             <div class="skills-grid">
                                 <div class="skill-item">
                                     <span class="skill-name">Япония</span>
+                                    <div class="skill-bar" data-level="99">
+                                        <div class="skill-progress"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item">
+                                    <span class="skill-name">Реализм</span>
                                     <div class="skill-bar" data-level="95">
                                         <div class="skill-progress"></div>
                                     </div>
@@ -99,20 +158,14 @@
                                     </div>
                                 </div>
                                 <div class="skill-item">
-                                    <span class="skill-name">Реализм</span>
-                                    <div class="skill-bar" data-level="98">
-                                        <div class="skill-progress"></div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
                                     <span class="skill-name">Минимализм</span>
-                                    <div class="skill-bar" data-level="92">
+                                    <div class="skill-bar" data-level="90">
                                         <div class="skill-progress"></div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
                                     <span class="skill-name">Dotwork</span>
-                                    <div class="skill-bar" data-level="88">
+                                    <div class="skill-bar" data-level="85">
                                         <div class="skill-progress"></div>
                                     </div>
                                 </div>
@@ -122,91 +175,153 @@
                 </div>
 
                 <div class="style-list">
-                    <h3>Мои стили:</h3>
+                    <h3>Мои стили</h3>
                     <div class="styles-grid">
+                        <!-- Япония -->
                         <div class="style-card">
-                            <div class="style-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <!-- Реализм: Детализированная роза со стеблем -->
-                                    <!-- Стебель -->
-                                    <path d="M12 21V16M12 16c0 0-2-1-2-3s2-3 2-3M12 16c0 0 2-1 2-3s-2-3-2-3" />
-                                    <!-- Шипы -->
-                                    <path d="M10 17l-1.5 1M14 17l1.5 1M10 14l-1.5 1M14 14l1.5 1" />
-                                    <!-- Листья -->
-                                    <path d="M9.5 18c-1 0-2-1-2-2s1-2 2-1.5M14.5 18c1 0 2-1 2-2s-1-2-2-1.5" />
-                                    <!-- Основной цветок -->
-                                    <path d="M12 3c-0.5 3-2 4.5-3.5 5.5C7 9.2 5.5 9.5 4 9.7c1.5 0.8 2.5 1.8 3 2.8 0.5 1 0.7 2.2 0.5 3.5 1.5-0.5 2.7-0.8 4-0.8 1.3 0 2.5 0.3 4 0.8-0.2-1.3 0-2.5 0.5-3.5 0.5-1 1.5-2 3-2.8-1.5-0.2-3-0.5-4.5-1.2C13 7.5 11.5 6 12 3z"/>
-                                    <!-- Детали лепестков -->
-                                    <path d="M12 6c0.8 1.5 1.5 2.5 2.5 3M12 6c-0.8 1.5-1.5 2.5-2.5 3"/>
-                                    <path d="M12 10c0.8-1 1.5-1.7 2.5-2M12 10c-0.8-1-1.5-1.7-2.5-2"/>
-                                    <!-- Тени и блики на лепестках -->
-                                    <path d="M10.5 8.5c0.5-0.5 1-0.7 1.5-0.7 0.5 0 1 0.2 1.5 0.7" fill="none"/>
-                                    <path d="M11 7.5c0.3-0.3 0.7-0.5 1-0.5 0.3 0 0.7 0.2 1 0.5" fill="none"/>
-                                </svg>
+                            <div class="style-card-inner">
+                                <div class="style-card-front">
+                                    <div class="style-icon">
+                                        <svg class="icon" viewBox="0 0 24 24">
+                                            <path d="M12 5L9 9l3 2 3-2-3-4z"/>
+                                            <path d="M9 9L4 12l5 3 3-2-3-4z"/>
+                                            <path d="M15 9l5 3-5 3-3-2 3-4z"/>
+                                            <path d="M12 11l-3 4 3 4 3-4-3-4z"/>
+                                            <path d="M6 7l1 1-1 1-1-1zM18 7l1 1-1 1-1-1zM12 19l1 1-1 1-1-1z"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Япония</h4>
+                                </div>
+                                <div class="style-card-back">
+                                    <h5>Особенности японского стиля</h5>
+                                    <p>Традиционное японское искусство татуировки. Глубокий смысл и вековые традиции!</p>
+                                    <ul class="style-features">
+                                        <li>Традиционные японские мотивы</li>
+                                        <li>Детальная проработка элементов</li>
+                                        <li>Гармоничные цветовые сочетания</li>
+                                        <li>Большие композиции и рукава</li>
+                                        <li>Символизм и мифология</li>
+                                    </ul>
+                                    <div class="return-btn">← Вернуться</div>
+                                </div>
                             </div>
-                            <h4>Реализм</h4>
-                            <p>Фотографическая точность и внимание к деталям. Твои воспоминания оживут на коже!</p>
                         </div>
+                        <!-- Реализм -->
                         <div class="style-card">
-                            <div class="style-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <!-- Old School: Ласточка в классическом стиле -->
-                                    <path d="M12 5L9 9l3 2 3-2-3-4z"/> <!-- Голова -->
-                                    <path d="M9 9L4 12l5 3 3-2-3-4z"/> <!-- Левое крыло -->
-                                    <path d="M15 9l5 3-5 3-3-2 3-4z"/> <!-- Правое крыло -->
-                                    <path d="M12 11l-3 4 3 4 3-4-3-4z"/> <!-- Хвост -->
-                                    <!-- Декоративные элементы -->
-                                    <path d="M12 7l1 1M12 7l-1 1"/> <!-- Детали головы -->
-                                    <path d="M7 12h2M15 12h2"/> <!-- Линии на крыльях -->
-                                    <path d="M12 15l1 1M12 15l-1 1"/> <!-- Детали хвоста -->
-                                    <!-- Звезды вокруг -->
-                                    <path d="M6 7l1 1-1 1-1-1zM18 7l1 1-1 1-1-1zM12 19l1 1-1 1-1-1z"/>
-                                </svg>
+                            <div class="style-card-inner">
+                                <div class="style-card-front">
+                                    <div class="style-icon">
+                                        <svg class="icon" viewBox="0 0 24 24">
+                                            <path d="M12 21V16M12 16c0 0-2-1-2-3s2-3 2-3M12 16c0 0 2-1 2-3s-2-3-2-3" />
+                                            <path d="M10 17l-1.5 1M14 17l1.5 1M10 14l-1.5 1M14 14l1.5 1" />
+                                            <path d="M9.5 18c-1 0-2-1-2-2s1-2 2-1.5M14.5 18c1 0 2-1 2-2s-1-2-2-1.5" />
+                                            <path d="M12 3c-0.5 3-2 4.5-3.5 5.5C7 9.2 5.5 9.5 4 9.7c1.5 0.8 2.5 1.8 3 2.8 0.5 1 0.7 2.2 0.5 3.5 1.5-0.5 2.7-0.8 4-0.8 1.3 0 2.5 0.3 4 0.8-0.2-1.3 0-2.5 0.5-3.5 0.5-1 1.5-2 3-2.8-1.5-0.2-3-0.5-4.5-1.2C13 7.5 11.5 6 12 3z"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Реализм</h4>
+                                </div>
+                                <div class="style-card-back">
+                                    <h5>Особенности реализма</h5>
+                                    <p>Фотографическая точность и внимание к деталям. Твои воспоминания оживут на коже!</p>
+                                    <ul class="style-features">
+                                        <li>Максимальная детализация и проработка</li>
+                                        <li>Точная передача светотени и текстур</li>
+                                        <li>Идеально для портретов и природных мотивов</li>
+                                        <li>Долгое время заживления из-за сложности</li>
+                                        <li>Требует нескольких сеансов для крупных работ</li>
+                                    </ul>
+                                    <div class="return-btn">← Вернуться</div>
+                                </div>
                             </div>
-                            <h4>Old School</h4>
-                            <p>Классика, проверенная временем. Яркие цвета и четкие линии для смелых духом!</p>
                         </div>
+                        <!-- Old School -->
                         <div class="style-card">
-                            <div class="style-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <!-- Графика: Геометрические фигуры -->
-                                    <path d="M12 2L2 12l10 10 10-10L12 2zm0 4l6 6-6 6-6-6 6-6z"/> <!-- Внешний ромб -->
-                                    <path d="M12 8l4 4-4 4-4-4 4-4z"/> <!-- Внутренний ромб -->
-                                    <circle cx="12" cy="12" r="2"/> <!-- Центральная точка -->
-                                </svg>
+                            <div class="style-card-inner">
+                                <div class="style-card-front">
+                                    <div class="style-icon">
+                                        <svg class="icon" viewBox="0 0 24 24">
+                                            <path d="M12 5L9 9l3 2 3-2-3-4z"/>
+                                            <path d="M9 9L4 12l5 3 3-2-3-4z"/>
+                                            <path d="M15 9l5 3-5 3-3-2 3-4z"/>
+                                            <path d="M12 11l-3 4 3 4 3-4-3-4z"/>
+                                            <path d="M6 7l1 1-1 1-1-1zM18 7l1 1-1 1-1-1zM12 19l1 1-1 1-1-1z"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Old School</h4>
+                                </div>
+                                <div class="style-card-back">
+                                    <h5>Особенности Old School</h5>
+                                    <p>Классика, проверенная временем. Яркие цвета и четкие линии для смелых духом!</p>
+                                    <ul class="style-features">
+                                        <li>Толстые чёткие контуры</li>
+                                        <li>Яркие, насыщенные цвета</li>
+                                        <li>Традиционные символы и мотивы</li>
+                                        <li>Отличная читаемость даже спустя годы</li>
+                                        <li>Быстрое заживление благодаря технике</li>
+                                    </ul>
+                                    <div class="return-btn">← Вернуться</div>
+                                </div>
                             </div>
-                            <h4>Графика</h4>
-                            <p>Геометрия и абстракция. Для тех, кто ценит минимализм и глубокий смысл.</p>
                         </div>
+                        <!-- Минимализм -->
                         <div class="style-card">
-                            <div class="style-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <!-- Минимализм: Простые линии -->
-                                    <path d="M4 12h16M12 4v16" stroke-width="2" fill="none" stroke="currentColor"/> <!-- Пересекающиеся линии -->
-                                    <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/> <!-- Круг -->
-                                </svg>
+                            <div class="style-card-inner">
+                                <div class="style-card-front">
+                                    <div class="style-icon">
+                                        <svg class="icon" viewBox="0 0 24 24">
+                                            <path d="M4 12h16M12 4v16" stroke-width="2"/>
+                                            <circle cx="12" cy="12" r="8" fill="none" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Минимализм</h4>
+                                </div>
+                                <div class="style-card-back">
+                                    <h5>Особенности минимализма</h5>
+                                    <p>Меньше значит больше. Лаконичные линии расскажут твою историю.</p>
+                                    <ul class="style-features">
+                                        <li>Простые, но выразительные линии</li>
+                                        <li>Минимум деталей, максимум смысла</li>
+                                        <li>Быстрое нанесение и заживление</li>
+                                        <li>Идеально для первой татуировки</li>
+                                        <li>Легко дополнить или изменить позже</li>
+                                    </ul>
+                                    <div class="return-btn">← Вернуться</div>
+                                </div>
                             </div>
-                            <h4>Минимализм</h4>
-                            <p>Меньше значит больше. Лаконичные линии расскажут твою историю.</p>
                         </div>
+                        <!-- Dotwork -->
                         <div class="style-card">
-                            <div class="style-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <!-- Dotwork: Узор из точек -->
-                                    <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor"/>
-                                    <circle cx="12" cy="12" r="1"/>
-                                    <circle cx="12" cy="8" r="1"/>
-                                    <circle cx="12" cy="16" r="1"/>
-                                    <circle cx="8" cy="12" r="1"/>
-                                    <circle cx="16" cy="12" r="1"/>
-                                    <circle cx="9.5" cy="9.5" r="1"/>
-                                    <circle cx="14.5" cy="9.5" r="1"/>
-                                    <circle cx="14.5" cy="14.5" r="1"/>
-                                    <circle cx="9.5" cy="14.5" r="1"/>
-                                </svg>
+                            <div class="style-card-inner">
+                                <div class="style-card-front">
+                                    <div class="style-icon">
+                                        <svg class="icon" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="8" fill="none"/>
+                                            <circle cx="12" cy="12" r="1"/>
+                                            <circle cx="12" cy="8" r="1"/>
+                                            <circle cx="12" cy="16" r="1"/>
+                                            <circle cx="8" cy="12" r="1"/>
+                                            <circle cx="16" cy="12" r="1"/>
+                                            <circle cx="9.5" cy="9.5" r="1"/>
+                                            <circle cx="14.5" cy="9.5" r="1"/>
+                                            <circle cx="14.5" cy="14.5" r="1"/>
+                                            <circle cx="9.5" cy="14.5" r="1"/>
+                                        </svg>
+                                    </div>
+                                    <h4>Dotwork</h4>
+                                </div>
+                                <div class="style-card-back">
+                                    <h5>Особенности Dotwork</h5>
+                                    <p>Тысячи точек сливаются в единую картину. Идеально для любителей необычного!</p>
+                                    <ul class="style-features">
+                                        <li>Создание изображений точками</li>
+                                        <li>Уникальные текстуры и градиенты</li>
+                                        <li>Отлично подходит для мандал</li>
+                                        <li>Долгое время нанесения</li>
+                                        <li>Особая техника заживления</li>
+                                    </ul>
+                                    <div class="return-btn">← Вернуться</div>
+                                </div>
                             </div>
-                            <h4>Dotwork</h4>
-                            <p>Тысячи точек сливаются в единую картину. Идеально для любителей необычного!</p>
                         </div>
                     </div>
                 </div>
@@ -377,7 +492,7 @@
                         </div>
                         <div class="contact-item">
                             <span class="icon">📍</span>
-                            <span>г. Москва, ул. Примерная, 123</span>
+                            <span>г. Пенза, ул. Куйбышева, 23 </span>
                         </div>
                     </div>
                 </div>
@@ -455,7 +570,7 @@
                         <label class="checkbox-container">
                             <input type="checkbox" required>
                             <span class="checkmark"></span>
-                            Согласен с обработкой персональных данных
+                            Согласие на обработку персональных данных
                         </label>
                     </div>
                     <button type="submit" class="submit-button">

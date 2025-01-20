@@ -581,80 +581,116 @@ h2 {
     letter-spacing: 1px;
 }
 
-.form-grid {
+.contact-form .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.contact-form .form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
 }
 
-.form-group.full-width {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
-    color: var(--text-gray);
-    font-size: 0.9rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
+.contact-form .form-group input,
+.contact-form .form-group select,
+.contact-form .form-group textarea {
+    width: 100%;
     padding: 1rem;
     background: var(--primary-dark);
-    border: 1px solid transparent;
+    border: 1px solid var(--text-gray);
     border-radius: 8px;
     color: var(--text-color);
     font-size: 1rem;
-    transition: all 0.3s ease;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.contact-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    position: static;
+}
+
+.contact-form .form-group input::placeholder,
+.contact-form .form-group textarea::placeholder {
+    color: var(--text-gray);
+    opacity: 0.5;
+}
+
+.contact-form .form-group input:focus,
+.contact-form .form-group select:focus,
+.contact-form .form-group textarea:focus {
     border-color: var(--accent-color);
     outline: none;
 }
 
-.form-group textarea {
-    height: 150px;
+.contact-form .form-group input:focus::placeholder,
+.contact-form .form-group textarea:focus::placeholder {
+    opacity: 0.3;
+}
+
+/* Стили для телефонного поля */
+.contact-form .form-group input[type="tel"] {
+    letter-spacing: 1px;
+}
+
+.contact-form .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.contact-form .form-group textarea {
+    min-height: 120px;
     resize: vertical;
 }
 
+.contact-form .form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c41e3a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+}
+
+.contact-form .form-group select option {
+    background: var(--primary-dark);
+    color: var(--text-color);
+    padding: 0.5rem;
+}
+
 /* Стили для чекбокса */
-.checkbox-container {
+.contact-form .checkbox-container {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin: 1rem 0 2rem 0;
     cursor: pointer;
+    padding: 0.5rem 0;
+}
+
+.contact-form .checkbox-container input[type="checkbox"] {
+    width: auto;
+    margin: 0.3rem 0 0 0;
+    cursor: pointer;
+}
+
+.contact-form .checkbox-container span {
     font-size: 0.9rem;
     color: var(--text-gray);
+    line-height: 1.4;
+    flex: 1;
 }
 
-.checkbox-container input {
-    display: none;
+/* Стили для состояния наведения */
+.contact-form .checkbox-container:hover span {
+    color: var(--text-color);
 }
 
-.checkmark {
-    width: 20px;
-    height: 20px;
-    background: var(--primary-dark);
-    border-radius: 4px;
-    position: relative;
-}
-
-.checkbox-container input:checked + .checkmark::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--accent-color);
+.contact-form .checkbox-container:hover input[type="checkbox"] {
+    accent-color: var(--accent-color);
 }
 
 /* Стили для кнопки отправки */
@@ -843,127 +879,165 @@ h2 {
     gap: 2rem;
 }
 
+/* Стили для карточек */
 .style-card {
-    background: var(--primary-dark);
+    position: relative;
+    width: 100%;
+    height: 320px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.style-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.style-card.flipped .style-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Общие стили для передней и задней сторон */
+.style-card-front,
+.style-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     padding: 2rem;
     border-radius: 8px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid transparent;
+    transition: all 0.3s ease;
 }
 
-.style-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(196, 30, 58, 0.2);
-    border-color: var(--accent-color);
-}
-
-.style-icon {
+.style-card-front {
+    background: var(--primary-dark);
+    z-index: 2;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem;
+    justify-content: center;
 }
 
-.style-icon .icon {
-    width: 48px;
-    height: 48px;
-    fill: var(--accent-color);
-    stroke: var(--accent-color);
-    transition: transform 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
+.style-card-front h4 {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-top: 1rem;
 }
 
-.style-card:hover .icon {
-    transform: scale(1.1);
-    fill: var(--text-color);
-    stroke: var(--text-color);
+.style-card-back {
+    background: var(--secondary-dark);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
 }
 
-/* Специальные стили для минималистичной иконки */
-.style-card:nth-child(4) .icon {
-    fill: none;
-    stroke: var(--accent-color);
-    stroke-width: 2;
-}
-
-.style-card:nth-child(4):hover .icon {
-    stroke: var(--text-color);
-}
-
-/* Специальные стили для dotwork иконки */
-.style-card:nth-child(5) .icon circle:first-child {
-    fill: none;
-    stroke-width: 1.5;
-}
-
-.style-card:nth-child(5) .icon circle:not(:first-child) {
-    fill: var(--accent-color);
-    stroke: none;
-}
-
-.style-card:nth-child(5):hover .icon circle:not(:first-child) {
-    fill: var(--text-color);
-}
-
-/* Специальные стили для иконки реализма */
-.style-card:first-child .icon {
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.style-card:first-child .icon path {
-    fill: none;
-    stroke: var(--accent-color);
-    transition: stroke 0.3s ease;
-}
-
-/* Стили для основного цветка */
-.style-card:first-child .icon path:nth-of-type(4) {
-    fill: var(--accent-color);
-    stroke: var(--accent-color);
-    transition: fill 0.3s ease, stroke 0.3s ease;
-}
-
-.style-card:first-child:hover .icon path {
-    stroke: var(--text-color);
-}
-
-.style-card:first-child:hover .icon path:nth-of-type(4) {
-    fill: var(--text-color);
-    stroke: var(--text-color);
-}
-
-/* Специальные стили для иконки old school */
-.style-card:nth-child(2) .icon {
-    stroke-width: 2;
-    stroke-linecap: butt;
-    stroke-linejoin: miter;
-}
-
-.style-card:nth-child(2) .icon path {
-    fill: var(--accent-color);
-    stroke: var(--accent-color);
-}
-
-.style-card:nth-child(2):hover .icon path {
-    fill: var(--text-color);
-    stroke: var(--text-color);
-}
-
-.style-card h4 {
+.style-card-back h5 {
     color: var(--accent-color);
     font-size: 1.3rem;
     margin-bottom: 1rem;
 }
 
-.style-card p {
+.style-card-back p {
     color: var(--text-gray);
     font-size: 0.95rem;
     line-height: 1.5;
+    margin-bottom: 1rem;
 }
 
-/* Медиа запросы для стилей */
+/* Подсказка о клике с анимацией пульсации */
+.style-card-front::after {
+    content: "Нажмите, чтобы узнать больше";
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    opacity: 0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0; }
+}
+
+.style-card:hover .style-card-front::after {
+    opacity: 1;
+    animation: none;
+}
+
+/* Стили для контента на задней стороне */
+.style-card-back .style-features {
+    text-align: left;
+    margin: 0.5rem 0;
+    list-style: none;
+}
+
+.style-card-back .style-features li {
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+    line-height: 1.4;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.style-card-back .style-features li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+.return-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    margin-top: auto;
+    align-self: center;
+}
+
+.return-btn:hover {
+    background: var(--accent-color);
+    color: var(--text-color);
+}
+
+/* Эффекты при наведении */
+.style-card:hover .style-card-front {
+    border-color: var(--accent-color);
+    box-shadow: 0 5px 15px rgba(196, 30, 58, 0.2);
+}
+
+/* Стили для SVG иконок */
+.style-icon {
+    margin-bottom: 1rem;
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    stroke: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.style-card:hover .icon {
+    stroke: var(--text-color);
+}
+
+/* Медиа запросы */
 @media (max-width: 768px) {
     .styles-grid {
         grid-template-columns: 1fr;
@@ -971,7 +1045,17 @@ h2 {
     }
     
     .style-card {
+        height: 300px;
+    }
+    
+    .style-card-front,
+    .style-card-back {
         padding: 1.5rem;
+    }
+    
+    .icon {
+        width: 48px;
+        height: 48px;
     }
 } 
 
@@ -1279,6 +1363,9 @@ h2 {
 
 .master-header {
     margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .master-header h3 {
@@ -1313,7 +1400,7 @@ h2 {
 
 .skill-name {
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 2rem;
 }
 
 .skill-bar {
@@ -1634,5 +1721,499 @@ h2 {
     
     .modal-nav.next {
         right: 10px;
+    }
+} 
+
+/* Стили для модального окна записи */
+.booking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.booking-modal.active {
+    display: flex;
+    animation: modalFadeIn 0.3s ease forwards;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.booking-form-container {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    background: var(--secondary-dark);
+    border-radius: 15px;
+    padding: 2rem;
+    z-index: 2001;
+    overflow: hidden;
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+.booking-modal.active .booking-form-container {
+    animation: formSlideUp 0.5s ease 0.2s forwards;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.modal-close-btn:hover {
+    background: var(--accent-color);
+    transform: rotate(90deg);
+}
+
+/* Стили для формы */
+.booking-form {
+    position: relative;
+    z-index: 1;
+}
+
+.booking-form h2 {
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.booking-form .form-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.booking-form .form-group input,
+.booking-form .form-group select,
+.booking-form .form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--primary-dark);
+    border: 1px solid var(--text-gray);
+    border-radius: 4px;
+    outline: none;
+}
+
+.booking-form .form-group label {
+    position: absolute;
+    left: 1rem;
+    top: -0.8rem;
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    background: var(--secondary-dark);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.booking-form .form-group textarea {
+    margin-top: 0.5rem;
+    min-height: 120px;
+    resize: vertical;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--primary-dark);
+    border: 1px solid var(--text-gray);
+    border-radius: 4px;
+    outline: none;
+}
+
+.booking-form .form-group textarea + label {
+    top: -1.2rem;
+    background: var(--secondary-dark);
+    padding: 0 0.5rem;
+}
+
+.booking-form .form-group input::placeholder,
+.booking-form .form-group textarea::placeholder {
+    color: var(--text-gray);
+    opacity: 0.7;
+}
+
+.booking-form .form-group input:focus,
+.booking-form .form-group select:focus,
+.booking-form .form-group textarea:focus {
+    border-color: var(--accent-color);
+}
+
+.booking-form .form-group input:focus + label,
+.booking-form .form-group select:focus + label,
+.booking-form .form-group textarea:focus + label {
+    color: var(--accent-color);
+}
+
+.booking-form select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c41e3a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+}
+
+.booking-form select option {
+    background: var(--primary-dark);
+    color: var(--text-color);
+    padding: 0.5rem;
+}
+
+/* Стили для кнопки отправки */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 8rem;
+    background: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.submit-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+/* Анимированные фигуры */
+.form-shapes .shape {
+    position: absolute;
+    opacity: 0.1;
+}
+
+.form-shapes .shape-1 {
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    animation: shapeFloat 8s infinite ease-in-out;
+}
+
+.form-shapes .shape-2 {
+    bottom: -30px;
+    left: -30px;
+    width: 120px;
+    height: 120px;
+    background: var(--accent-color);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    animation: shapeRotate 12s infinite linear;
+}
+
+.form-shapes .shape-3 {
+    top: 50%;
+    right: 10%;
+    width: 60px;
+    height: 60px;
+    background: var(--accent-color);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    animation: shapePulse 4s infinite ease-in-out;
+}
+
+/* Анимации */
+@keyframes modalFadeIn {
+    from {
+        background: rgba(0, 0, 0, 0);
+    }
+    to {
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+@keyframes formSlideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shapeFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+@keyframes shapeRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shapePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Медиа запросы */
+@media (max-width: 768px) {
+    .booking-form-container {
+        padding: 1.5rem;
+    }
+    
+    .booking-form h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-shapes .shape {
+        transform: scale(0.7);
+    }
+} 
+
+.form-group select {
+    width: 100%;
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--secondary-dark);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+}
+
+.form-group select option {
+    background: var(--secondary-dark);
+    color: var(--text-color);
+    padding: 1rem;
+}
+
+/* Добавляем стрелку для select */
+.form-group select:after {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+    pointer-events: none;
+}
+
+/* Стили при наведении и фокусе */
+.form-group select:hover,
+.form-group select:focus {
+    background: var(--primary-dark);
+}
+
+.form-group select:focus option:hover {
+    background: var(--accent-color);
+}
+
+/* Стили для формы */
+.booking-form {
+    position: relative;
+    z-index: 1;
+}
+
+/* Стили для select в форме бронирования */
+.booking-form select {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: var(--primary-dark);
+    border: 1px solid var(--text-gray);
+    border-radius: 4px;
+    outline: none;
+}
+
+.booking-form select option {
+    padding: 0.8rem;
+    background-color: var(--primary-dark);
+    color: var(--text-color);
+}
+
+.booking-form select:focus {
+    border-color: var(--accent-color);
+}
+
+.booking-form select:hover option:hover {
+    background-color: var(--accent-color);
+}
+
+/* Добавляем стрелку для select */
+.form-group {
+    position: relative;
+}
+
+.form-group::after {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+.booking-form .checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin: 1rem 0 2rem 0;
+    cursor: pointer;
+    padding: 0.5rem 0;
+}
+
+.booking-form .checkbox-container input[type="checkbox"] {
+    width: auto;
+    margin: 0.3rem 0 0 0;
+    cursor: pointer;
+}
+
+.booking-form .checkbox-container span {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    line-height: 1.4;
+}
+
+.booking-form .checkbox-container a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.booking-form .checkbox-container a:hover {
+    color: var(--text-color);
+    border-bottom-color: var(--text-color);
+}
+
+.booking-form .checkbox-container:hover span {
+    color: var(--text-color);
+}
+
+.booking-form .checkbox-container:hover input[type="checkbox"] {
+    accent-color: var(--accent-color);
+}
+
+/* Обновляем стили для секций с фоновыми изображениями */
+.about {
+    position: relative;
+    background: linear-gradient(rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.95)),
+                url('https://i.pinimg.com/originals/7e/d2/9a/7ed29aaaddc05ef837b66a07aba50f4f.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.portfolio {
+    position: relative;
+    background: linear-gradient(rgba(26, 26, 26, 0.92), rgba(26, 26, 26, 0.92)),
+                url('https://i.pinimg.com/originals/d4/cb/92/d4cb9236fa28b554191c152e211d4672.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.process {
+    position: relative;
+    background: linear-gradient(rgba(26, 26, 26, 0.93), rgba(26, 26, 26, 0.93)),
+                url('https://i.pinimg.com/originals/a1/d0/5e/a1d05e12a9e0b836796de4a1c3d12228.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.contact {
+    position: relative;
+    background: linear-gradient(rgba(26, 26, 26, 0.94), rgba(26, 26, 26, 0.94)),
+                url('https://i.pinimg.com/736x/ab/7a/73/ab7a730a77893b412840cc842fc0d474.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+/* Добавляем эффект параллакса при скролле */
+@media (min-width: 769px) {
+    .about, .portfolio, .process, .contact {
+        background-attachment: fixed;
+    }
+}
+
+@media (max-width: 768px) {
+    .about, .portfolio, .process, .contact {
+        background-attachment: scroll;
     }
 } 

@@ -326,64 +326,114 @@ portfolioTrack.addEventListener('touchmove', drag, { passive: true });
 
 // Обновляем код анимации прогресс-баров
 document.addEventListener('DOMContentLoaded', () => {
-    const skillBars = document.querySelectorAll('.skill-bar');
+    const styleCards = document.querySelectorAll('.style-card');
     
-    const animateSkills = () => {
-        skillBars.forEach(bar => {
-            const level = bar.getAttribute('data-level');
-            const progress = bar.querySelector('.skill-progress');
-            progress.style.width = `${level}%`;
-        });
-    };
-
-    // Запускаем анимацию при появлении секции в поле зрения
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateSkills();
+    styleCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.return-btn')) {
+                styleCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.classList.remove('flipped');
+                    }
+                });
+                card.classList.toggle('flipped');
             }
         });
+
+        const returnBtn = card.querySelector('.return-btn');
+        if (returnBtn) {
+            returnBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                card.classList.remove('flipped');
+            });
+        }
     });
 
-    // Изменяем селектор на .master-profile
+    // Инициализация компонентов
+    initializeSkillsAnimation();
+    initializePhoneMask();
+    typeText();
+    startAutoScroll();
+});
+
+function initializeSkillsAnimation() {
+    const skillBars = document.querySelectorAll('.skill-bar');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkills(skillBars);
+            }
+        });
+    }, { threshold: 0.5 });
+
     const masterProfile = document.querySelector('.master-profile');
     if (masterProfile) {
         observer.observe(masterProfile);
     }
-});
+}
 
-// Добавляем маску для телефона
-document.addEventListener('DOMContentLoaded', () => {
-    const phoneInput = document.getElementById('phone');
+function animateSkills(skillBars) {
+    skillBars.forEach(bar => {
+        const level = bar.getAttribute('data-level');
+        const progress = bar.querySelector('.skill-progress');
+        progress.style.width = `${level}%`;
+    });
+}
+
+function initializePhoneMask() {
+    const phoneInputs = document.querySelectorAll('input[type="tel"]');
     
-    function maskPhone(event) {
-        const value = event.target.value.replace(/\D+/g, '');
-        const numberLength = 11;
+    phoneInputs.forEach(input => {
+        let prevValue = '';
         
-        let result = '+7 (';
-        
-        for (let i = 0; i < value.length && i < numberLength; i++) {
-            switch (i) {
-                case 3:
-                    result += ') ';
-                    break;
-                case 6:
-                    result += '-';
-                    break;
-                case 8:
-                    result += '-';
-                    break;
-                default:
-                    break;
+        input.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            // Если первая цифра 7 или 8, удаляем её
+            if (value.length > 0 && (value[0] === '7' || value[0] === '8')) {
+                value = value.substring(1);
             }
-            result += value[i];
-        }
-        
-        event.target.value = result;
-    }
-    
-    phoneInput.addEventListener('input', maskPhone);
-});
+            
+            // Ограничиваем длину до 10 цифр
+            value = value.substring(0, 10);
+            
+            // Форматируем номер
+            let formattedValue = '';
+            if (value.length > 0) {
+                formattedValue = '+7 ';
+                if (value.length > 0) {
+                    formattedValue += '(' + value.substring(0, 3);
+                }
+                if (value.length > 3) {
+                    formattedValue += ') ' + value.substring(3, 6);
+                }
+                if (value.length > 6) {
+                    formattedValue += '-' + value.substring(6, 8);
+                }
+                if (value.length > 8) {
+                    formattedValue += '-' + value.substring(8, 10);
+                }
+            }
+            
+            // Обновляем значение только если оно изменилось
+            if (formattedValue !== prevValue) {
+                input.value = formattedValue;
+                prevValue = formattedValue;
+            }
+        });
+
+        // Обработка удаления символов
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace' || e.key === 'Delete') {
+                let value = input.value.replace(/\D/g, '');
+                if (value.length <= 1) {
+                    input.value = '';
+                    prevValue = '';
+                }
+            }
+        });
+    });
+}
 
 // Добавляем анимацию для социальных иконок
 const socialLinks = document.querySelectorAll('.social-link');
@@ -420,4 +470,173 @@ modal.addEventListener('touchmove', (e) => {
     if (modal.classList.contains('active')) {
         e.preventDefault();
     }
-}, { passive: false }); 
+}, { passive: false });
+
+// Добавляем функционал модального окна записи
+const bookingBtn = document.getElementById('booking-btn');
+const bookingModal = document.querySelector('.booking-modal');
+const modalCloseBtn = document.querySelector('.modal-close-btn');
+const modalOverlay = document.querySelector('.modal-overlay');
+const bookingForm = document.querySelector('.booking-form');
+
+// Открытие модального окна
+if (bookingBtn) {
+    bookingBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        bookingModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+// Закрытие модального окна
+function closeBookingModal() {
+    bookingModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+if (modalCloseBtn) {
+    modalCloseBtn.addEventListener('click', closeBookingModal);
+}
+
+if (modalOverlay) {
+    modalOverlay.addEventListener('click', closeBookingModal);
+}
+
+// Закрытие по клавише Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && bookingModal.classList.contains('active')) {
+        closeBookingModal();
+    }
+});
+
+// Предотвращаем закрытие при клике на форму
+if (bookingForm) {
+    bookingForm.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+}
+
+// Маска для телефона
+const bookingPhone = document.getElementById('booking-phone');
+
+bookingPhone.addEventListener('input', function(e) {
+    let input = e.target;
+    let value = input.value.replace(/\D/g, '');
+    const cursorPosition = input.selectionStart;
+    
+    // Если первая цифра 7 или 8, убираем её
+    if (value.startsWith('7') || value.startsWith('8')) {
+        value = value.slice(1);
+    }
+    
+    // Ограничиваем длину до 10 цифр (без учёта +7)
+    if (value.length > 10) {
+        value = value.slice(0, 10);
+    }
+    
+    // Форматируем номер
+    let formattedValue = '';
+    if (value.length > 0) {
+        // Всегда начинаем с +7
+        formattedValue = '+7';
+        
+        // Добавляем скобку и первые 3 цифры
+        if (value.length > 0) {
+            formattedValue += ' (' + value.substring(0, Math.min(3, value.length));
+        }
+        
+        // Добавляем закрывающую скобку и следующие 3 цифры
+        if (value.length > 3) {
+            formattedValue += ') ' + value.substring(3, Math.min(6, value.length));
+        }
+        
+        // Добавляем первый дефис и следующие 2 цифры
+        if (value.length > 6) {
+            formattedValue += '-' + value.substring(6, Math.min(8, value.length));
+        }
+        
+        // Добавляем второй дефис и последние 2 цифры
+        if (value.length > 8) {
+            formattedValue += '-' + value.substring(8, Math.min(10, value.length));
+        }
+    }
+    
+    // Обновляем значение поля
+    input.value = formattedValue;
+    
+    // Вычисляем новую позицию курсора
+    let newPosition = cursorPosition;
+    
+    // Корректируем позицию курсора после форматирования
+    if (cursorPosition <= 2) newPosition = formattedValue.length;
+    else if (cursorPosition <= 6) newPosition = cursorPosition + 1;
+    else if (cursorPosition <= 10) newPosition = cursorPosition + 2;
+    else if (cursorPosition <= 13) newPosition = cursorPosition + 3;
+    else newPosition = cursorPosition + 4;
+    
+    // Устанавливаем курсор в правильную позицию
+    setTimeout(() => {
+        input.setSelectionRange(newPosition, newPosition);
+    }, 0);
+});
+
+// Предотвращаем ввод букв и специальных символов
+bookingPhone.addEventListener('keydown', function(e) {
+    // Разрешаем: backspace, delete, tab и escape
+    if (e.key === 'Backspace' || e.key === 'Delete' || e.key === 'Tab' || e.key === 'Escape') {
+        return;
+    }
+    // Разрешаем: Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+    if ((e.ctrlKey === true || e.metaKey === true) && 
+        (e.key === 'a' || e.key === 'c' || e.key === 'v' || e.key === 'x')) {
+        return;
+    }
+    // Разрешаем: home, end, влево, вправо
+    if (e.key === 'Home' || e.key === 'End' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        return;
+    }
+    // Блокируем ввод всего, кроме цифр
+    if (!/[0-9]/.test(e.key)) {
+        e.preventDefault();
+    }
+});
+
+// Анимация отправки формы
+bookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const submitBtn = bookingForm.querySelector('.submit-btn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnIcon = submitBtn.querySelector('.btn-icon');
+    
+    // Анимация кнопки
+    submitBtn.style.width = '50px';
+    btnText.style.opacity = '0';
+    btnIcon.style.opacity = '0';
+    
+    // Добавляем индикатор загрузки
+    setTimeout(() => {
+        submitBtn.innerHTML = '<div class="loader"></div>';
+    }, 300);
+    
+    // Имитируем отправку
+    setTimeout(() => {
+        submitBtn.innerHTML = '✓';
+        submitBtn.style.background = '#28a745';
+        
+        // Закрываем модальное окно
+        setTimeout(() => {
+            closeBookingModal();
+            // Сбрасываем форму и кнопку
+            bookingForm.reset();
+            setTimeout(() => {
+                submitBtn.style.width = '';
+                submitBtn.style.background = '';
+                submitBtn.innerHTML = `
+                    <span class="btn-text">Отправить</span>
+                    <span class="btn-icon">→</span>
+                `;
+            }, 300);
+        }, 1000);
+    }, 2000);
+}); 
