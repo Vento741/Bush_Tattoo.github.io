@@ -756,22 +756,6 @@ h2 {
     letter-spacing: 1px;
 }
 
-.typing::after {
-    content: '';
-    position: absolute;
-    width: 3px;
-    height: 100%;
-    background-color: var(--accent-color);
-    margin-left: 4px;
-    animation: cursor-blink 0.7s step-end infinite;
-}
-
-@keyframes cursor-blink {
-    50% {
-        opacity: 0;
-    }
-} 
-
 /* Добавляем стили для анимированных тату-элементов */
 .tattoo-shapes {
     position: absolute;
